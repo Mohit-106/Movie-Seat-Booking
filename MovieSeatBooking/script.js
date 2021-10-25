@@ -17,7 +17,7 @@ function setMovieData(movieIndex, moviePrice) {
 // Update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
-
+  //save seat index in local storage
   const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
 
   localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
@@ -31,9 +31,10 @@ function updateSelectedCount() {
 // Get data from localstorage and populate UI
 function populateUI() {
   const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-
+  // here we are looping through the all seats
   if (selectedSeats !== null && selectedSeats.length > 0) {
     seats.forEach((seat, index) => {
+      // we input a index and it return -1 it indicates such index does not present in the array
       if (selectedSeats.indexOf(index) > -1) {
         seat.classList.add('selected');
       }
